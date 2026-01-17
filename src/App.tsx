@@ -1,35 +1,45 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    // This fires as soon as the component mounts
+    confetti({
+      particleCount: 150,
+      spread: 70,
+      origin: { y: 0.6 },
+      colors: ["#a2d2ff", "#bde0fe", "#ffafcc", "#ffc8dd"], // Soft spa-like colors
+    });
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
+    <div className="w-screen h-screen bg-orange-300/80">
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <div className="imgBox">
+          <div className="bark"></div>
+          <img src="https://image.ibb.co/fYzTrb/lastofus.jpg" />
+        </div>
+        <div className="details flex flex-col gap-y-3 text-sm px-4">
+          <p>Happy Birthday to Shay and to Nate,</p>
+          <p>
+            A duo so stellar, it’s time to celebrate! We know you’ve been busy and working
+            so hard, So we’re playing a very special "relax" card.
+          </p>
+          <p>
+            No chores or errands or stresses allowed, We’re lifting you up to a fluffy
+            white cloud. It’s time for some pampering—just you two, A spa day is waiting,
+            and it’s all for you!
+          </p>
+          <p>
+            So soak up the peace and the birthday fun, A duo like you is second to none!
+          </p>
+
+          <p className="text-right">Love you guys ❤</p>
+        </div>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
