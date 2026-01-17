@@ -1,8 +1,24 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 
 function App() {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  // 2. Functions to play and pause
+  const handleMouseEnter = () => {
+    if (audioRef.current) {
+      audioRef.current.play().catch((err) => console.log("Audio play blocked:", err));
+    }
+  };
+
+  const handleMouseLeave = () => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      // Optional: audioRef.current.currentTime = 0; // Uncomment to restart song every time
+    }
+  };
+
   useEffect(() => {
     // This fires as soon as the component mounts
     confetti({
@@ -15,12 +31,18 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-orange-300/80">
-      <div className="card">
+      <audio ref={audioRef} src="/song.mp3" loop />
+
+      <div
+        className="card"
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div className="imgBox">
           <div className="bark"></div>
           <img src="https://image.ibb.co/fYzTrb/lastofus.jpg" />
         </div>
-        <div className="details flex flex-col gap-y-3 text-sm px-4">
+        <div className="details flex flex-col gap-y-3 md:text-sm px-4 text-xs md:mt-[70px] mt-12">
           <p>Happy Birthday to Shay and to Nate,</p>
           <p>
             A duo so stellar, it’s time to celebrate! We know you’ve been busy and working
