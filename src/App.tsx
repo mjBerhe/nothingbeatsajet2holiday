@@ -8,6 +8,10 @@ function App() {
   // 2. Functions to play and pause
   const handleMouseEnter = () => {
     if (audioRef.current) {
+      if (audioRef.current.currentTime === 0) {
+        audioRef.current.currentTime = 17;
+      }
+
       audioRef.current.play().catch((err) => console.log("Audio play blocked:", err));
     }
   };
@@ -31,7 +35,8 @@ function App() {
 
   return (
     <div className="w-screen h-screen bg-orange-300/80">
-      <audio ref={audioRef} src="/song.mp3" loop />
+      <audio ref={audioRef} src="/dont-stop-the-party.mp3" loop />
+      {/* <audio ref={audioRef} src="/song.mp3" loop /> */}
 
       <div
         className="card"
@@ -50,8 +55,15 @@ function App() {
           </p>
           <p>
             No chores or errands or stresses allowed, We’re lifting you up to a fluffy
-            white cloud. It’s time for some pampering—just you two, A spa day is waiting,
-            and it’s all for you!
+            white cloud. It’s time for some pampering—just you two, A{" "}
+            <a
+              href="https://www.canva.com/design/DAG-ptACT30/1T_NI-1r7gEQ-wtJK87S_g/edit"
+              target="_blank"
+              className="underline cursor-pointer text-green-800"
+            >
+              spa day
+            </a>{" "}
+            is waiting, and it’s all for you!
           </p>
           <p>
             So soak up the peace and the birthday fun, A duo like you is second to none!
